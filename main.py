@@ -10,6 +10,7 @@ from config import *
 
 TICKER = 'BTCUSD'
 OVERLAPPING_PULL = 5
+TIME_INTERVAL = '5Min'
 
 def get_account_details():
     r = requests.get(HOST_URL + '/v2/account', headers={'APCA-API-KEY-ID': API_KEY, 'APCA-API-SECRET-KEY': SECRET_KEY})
@@ -29,7 +30,7 @@ def post_order(symbol=None,qty=None,side=None,type=None,time_in_force=None):
 #                       params={'timeframe': timeframe, 'start': start, 'end': end})
 #     return json.loads(r.content)
 
-def get_bars(symbol=None,start=None,end=None,exchanges='CBSE',timeframe='60Min'):
+def get_bars(symbol=None,start=None,end=None,exchanges='CBSE',timeframe=TIME_INTERVAL):
     r = requests.get('https://data.alpaca.markets/' + '/v1beta1/crypto/' + symbol + '/bars',
                       headers={'APCA-API-KEY-ID': API_KEY, 'APCA-API-SECRET-KEY': SECRET_KEY},
                       params={'timeframe': timeframe, 'start': start, 'end': end, 'exchanges': exchanges})
